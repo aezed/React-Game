@@ -1,16 +1,26 @@
 import React from 'react';
+import {
+  boardHeight,
+  paddleHeight,
+  paddleWidth,
+  paddleMovementRadius
+} from '../constants/game.js';
 
-export default class Paddle extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const Paddle = ({ attributes }) => {
+  console.log(attributes);
+  const paddleX = paddleMovementRadius * Math.cos(attributes.position) + (boardHeight / 2);
+  const paddleY = paddleMovementRadius * Math.sin(attributes.position) + (boardHeight / 2);
+  const rotation = 'rotate(45)';
 
-  render() {
-    const paddleX = 200 * Math.cos(this.props.paddlePosition) + 250;
-    const paddleY = 200 * Math.sin(this.props.paddlePosition) + 250;
-
-    return (
-      <rect x={paddleX} y={paddleY} width={100} height={20} fill="red" />
-    );
-  }
+  return (
+    <rect
+      x={paddleX}
+      y={paddleY}
+      width={paddleWidth}
+      height={paddleHeight}
+      fill="red"
+    />
+  );
 }
+
+export default Paddle;

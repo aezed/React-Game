@@ -37,7 +37,7 @@ export default class Game extends React.Component {
         return (
             <div>
                 <svg width={500} height={500} style={{ 'border': '1px solid black' }}>
-                    <Paddle paddlePosition={this.state.paddle.position} />
+                    <Paddle attributes={this.state.paddle} />
                 </svg>
             </div>
         )
