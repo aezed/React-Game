@@ -10,7 +10,9 @@ export default class Game extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            paddlePosition: 1
+            paddle: {
+                position: 1
+            }
         }
     }
     componentDidMount() {
@@ -18,24 +20,24 @@ export default class Game extends React.Component {
     }
     handleKeyDown(e){
         window.addEventListener('keydown', (e)=>{
-            var paddlePosition = _.clone(this.state.paddlePosition);
+            var paddle = _.clone(this.state.paddle);
             var color = this.state.color;
             switch (e.keyCode){
                 case keys.LEFT:
-                    paddlePosition += 0.1;
+                    paddle.position += 0.1;
                     break;
                 case keys.RIGHT:
-                    paddlePosition -= 0.1;
+                    paddle.position -= 0.1;
                     break;
             }
-            this.setState({paddlePosition});
+            this.setState({ paddle });
         });
     }
     render(){
         return (
             <div>
                 <svg width={500} height={500} style={{ 'border': '1px solid black' }}>
-                    <Paddle paddlePosition={this.state.paddlePosition} />
+                    <Paddle paddlePosition={this.state.paddle.position} />
                 </svg>
             </div>
         )
