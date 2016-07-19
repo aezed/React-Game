@@ -2,6 +2,7 @@ import React from 'react';
 import keys from '../constants/keys';
 // import {gameTickSize} from '../constants/game'
 import _ from 'lodash';
+import Paddle from './paddle';
 
 // import Grid from './Grid.jsx';
 
@@ -21,10 +22,10 @@ export default class Game extends React.Component {
             var color = this.state.color;
             switch (e.keyCode){
                 case keys.LEFT:
-                    paddlePosition -= 0.05;
+                    paddlePosition += 0.1;
                     break;
                 case keys.RIGHT:
-                    paddlePosition -= 0.05;
+                    paddlePosition -= 0.1;
                     break;
             }
             this.setState({paddlePosition});
@@ -33,7 +34,7 @@ export default class Game extends React.Component {
     render(){
         return (
             <div>
-                { this.state.paddlePosition }
+                <Paddle paddlePosition={this.state.paddlePosition} />
             </div>
         )
     }
