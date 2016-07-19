@@ -1,7 +1,7 @@
 import React from 'react';
+import {speed, ballRadius, intervalTime} from '/app/constants/game';
 
-const intervalTime = 30;
-const speed = 100;
+const direction = 1;
 
 export default class Ball extends React.Component {
   constructor(props) {
@@ -12,17 +12,13 @@ export default class Ball extends React.Component {
     }
   }
 
-  // speed = pixels / second
-  // direction = radians (0 to 2pi)
 
-  // x += cos(direction) * speed / timeElapsed
-  // y += sin(direction) * speed / timeElapsed 
   componentDidMount() {
     setInterval(() => {
       const {cx, cy} = this.state;      
       this.setState({
-        cx: cx + 5,
-        cy: cy + 5
+        cx: cx + Math.cos(direction) * speed / timeElapsed,
+        cy: cy + Math.sin(direction) * speed / timeElapsed
       });
     }, intervalTime)
   }
@@ -31,7 +27,7 @@ export default class Ball extends React.Component {
   render() {
     return (
       <svg>
-        <circle cx={this.state.cx} cy={this.state.cy} r={15} fill="red" />
+        <circle cx={this.state.cx} cy={this.state.cy} r={ballRadius} fill="red" />
       </svg>
     )
   }
